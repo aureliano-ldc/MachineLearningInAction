@@ -191,7 +191,7 @@ def storeTree(inputTree, filename):
 def grabTree(filename):
 	import pickle
 	fr = open(filename, 'rb')
-	# 应为读取的是二进制文件，这里不加'rb'也会报错
+	# 因为读取的是二进制文件，这里不加'rb'也会报错
 	return pickle.load(fr)
 
 # 执行
