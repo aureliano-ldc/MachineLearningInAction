@@ -147,6 +147,21 @@ def classify(inputTree, featLabels, testVec):
 
 # 执行
 # createDataSet() 生成的labels不是类名，而是特征名
+import trees
 myDat, labels = trees.createDataSet()
 myTree = retrieveTree(0)
 classify(myTree, labels, [1,0])
+
+
+
+
+""" 
+	实例：预测隐形眼镜(contact lens)分类：
+	结果出现过拟合，需要剪枝，第9章再讲
+"""
+fr = open('lenses.txt', 'r')
+lenses = [inst.strip().split('\t') for inst in fr.readlines()]
+lensesLabels = ['age', 'prescript', 'astigmatic', 'tearRate']
+
+lensesTree = trees.createTree(lenses, lensesLabels)
+createPlot(lensesTree)

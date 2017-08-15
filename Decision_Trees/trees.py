@@ -175,3 +175,29 @@ myTree = createTree(myDat,labels)
 
 
 
+
+""" 通过pickle序列化(serializing)决策树:
+	每次做分类都要重新构建一棵树是很浪费时间的事情
+	通过pickle序列化对象，可以把它存储起来，以备后用
+	这是决策树相对于其它ML算法的一个advantage
+"""
+def storeTree(inputTree, filename):
+	import pickle
+	fw = open(filename, 'wb')
+	# 'w'表示写文本文件，'wb'表示写二进制文件，这里如果用'w'会报错
+	pickle.dump(inputTree, fw)
+	fw.close()
+
+def grabTree(filename):
+	import pickle
+	fr = open(filename, 'rb')
+	# 应为读取的是二进制文件，这里不加'rb'也会报错
+	return pickle.load(fr)
+
+# 执行
+storeTree(myTree, 'classifierStorage.txt')
+grabTree('classifierStorage.txt')
+
+
+
+
